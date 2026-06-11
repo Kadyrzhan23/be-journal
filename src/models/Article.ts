@@ -3,12 +3,6 @@ import type { IArticle } from "../types/Article.js";
 
 const ArticleAuthorSchema = new Schema(
     {
-        userId: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
-        },
-
         order: {
             type: Number,
             default: 0,
@@ -29,13 +23,11 @@ const ArticleSchema = new Schema<IArticle>(
             required: true,
             trim: true,
         },
-
         issueId: {
             type: Schema.Types.ObjectId,
             ref: "Issue",
             default: null,
         },
-
         issueNumber:{
             type: Number,
             required: true,
@@ -65,7 +57,7 @@ const ArticleSchema = new Schema<IArticle>(
 
         status: {
             type: String,
-            required: true,
+            default: "created",
         },
 
         reviewNote: {
@@ -74,10 +66,10 @@ const ArticleSchema = new Schema<IArticle>(
         },
 
         title: {
-            en: { type: String, default: null },
-            ru: { type: String, default: null },
-            uz: { type: String, default: null },
-            kz: { type: String, default: null },
+            en: { type: String, required:true },
+            ru: { type: String, required:true },
+            uz: { type: String, required:true },
+            kz: { type: String, required:true },
         },
 
         abstract: {

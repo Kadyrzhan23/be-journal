@@ -8,38 +8,26 @@ const IssueSchema = new Schema<IIssue>(
             ref: "Volume",
             required: true,
         },
-
-        number: {
-            type: Number,
-            required: true,
-        },
-
+        number: {type: Number, required: true,},
         title: {
             en: { type: String, required: true },
             ru: { type: String, required: true },
             uz: { type: String, required: true },
             kz: { type: String, required: true },
         },
-
         description: {
             en: { type: String, default: null },
             ru: { type: String, default: null },
             uz: { type: String, default: null },
             kz: { type: String, default: null },
         },
-
-        isSpecial: {
-            type: Boolean,
-            default: false,
-        },
-
+        isSpecial: {type: Boolean, default: false},
         specialTheme: {
             en: { type: String, default: null },
             ru: { type: String, default: null },
             uz: { type: String, default: null },
             kz: { type: String, default: null },
         },
-
         publishedAt: {
             type: Date,
             default: null,

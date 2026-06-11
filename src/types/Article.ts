@@ -8,8 +8,8 @@ export interface IArticle {
     issueNumber: number;
     volumeNumber: number;
     authors: IArticleAuthor[];
-    editorId: Types.ObjectId | null;
-    createdBy: Types.ObjectId;
+    editorId: Types.ObjectId | string;
+    createdBy: Types.ObjectId | string;
     status: ArticleStatus;
     reviewNote: string | null;
     title: LocalizedString;
@@ -22,7 +22,7 @@ export interface IArticle {
         kz?: string;
     };
     topicCode: TopicCode;
-    keywords: string[];
+    keywords: keyword[];
     doi: string | null;
     pageStart: number | null;
     pageEnd: number | null;
@@ -36,17 +36,26 @@ export interface IArticle {
     updatedAt: Date;
 }
 
+export interface ArticleBodyFromFR extends
+    Pick<IArticle, "issueId" | "issueNumber" | "volumeNumber" | "authors"
+    | "createdBy" | "title" | "abstract" | "pdfUrl" | "topicCode" | "keywords"
+    | "doi" | "pageStart" | "pageEnd">{
+
+}
+
 export type ArticleStatus = "created" | "submitted" | "revision_requested" |
     "approved" | "rejected" | "published" | "retracted" | "updated"
 
 export type TopicCode = "chemical" | "biological" | "technical" |
     "agricultural" | "economic" | "veterinary"
 
+export type keyword = "Research Article" | "Crop Science" | "Open Access" | "Public Health" | "Review"
+
 
 export interface IArticleAuthor {
-    userId: Types.ObjectId;
-
+    userId?:string;
+    firstname: string;
+    lastname: string;
     order: number;
-
     corresponding: boolean;
 }
